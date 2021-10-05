@@ -27,38 +27,9 @@ while file_name = Readline.readline
     rt = Bundler::Runtime::new(Dir.getwd,Bundler::Definition::build(Bundler::default_gemfile,Bundler::default_lockfile,false))
     parser = Bundler::LockfileParser.new(Bundler.read_file(Bundler.default_lockfile))
 
-    rt.dependencies.each { |dep|
-      #puts "RTDEP: #{dep.name}"
-    }
-
-    parser.dependencies.each { |name,dep|
-      #puts "LFDEP: #{name} --> #{dep.groups}  #{dep.requirements_list.to_s}"
-    }
-
-    parser.specs.each { |spec|
-      #puts "SPEC: #{spec.name} --> #{spec.version.to_s} @ #{spec.source.class} #{spec.source.to_s}"
-    }
-
-    puts "*****************************************"
-    names = []
-    rt.dependencies.each { |dep|
-      if dep.groups == [:default]
-        #puts "#{dep.name}:"
-        names = recurse(parser,dep.name,names)
-      end
-    }
-    specs = []
-    rt.specs.each { |spec|
-      unless names.index(spec.name) == nil
-        specs.push(spec)
-      end
-    }
-    #puts "list --> #{names.to_s}"
-    #puts "specs --> #{specs.to_s}"
-
     results = []
 
-    specs.each { |spec|
+    parser.specs.each { |spec|
       #puts "spec-source: #{spec.name} --> #{spec.source}"
       url = "https://rubygems.org/gems/#{spec.name}/versions/#{spec.version}"
       result = { filename: file_name, path: path, name: spec.name, version: spec.version , url: url }

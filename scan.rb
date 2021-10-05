@@ -25,8 +25,6 @@ while file_name = Readline.readline
   Dir.chdir(directory) { | path |
     puts "now in directory #{path}"
     rt = Bundler::Runtime::new(Dir.getwd,Bundler::Definition::build(Bundler::default_gemfile,Bundler::default_lockfile,false))
-    # Bundler::definition(true)
-    # Bundler::require(:default)
     parser = Bundler::LockfileParser.new(Bundler.read_file(Bundler.default_lockfile))
 
     rt.dependencies.each { |dep|

@@ -1,0 +1,26 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    io-console (0.5.9)
+    mini_portile2 (2.6.1)
+    nokogiri (1.12.5)
+      mini_portile2 (~> 2.6.1)
+      racc (~> 1.4)
+    open-uri (0.1.0)
+    racc (1.5.2)
+    readline (0.0.2)
+      reline
+    reline (0.2.7)
+      io-console (~> 0.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler
+  nokogiri
+  open-uri
+  readline
+
+BUNDLED WITH
+   2.1.4

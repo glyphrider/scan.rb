@@ -20,6 +20,8 @@ def recurse(parser,name,list)
   return list
 end
 
+results = []
+
 while file_name = Readline.readline
   directory = File.dirname(File.expand_path(file_name))
   Dir.chdir(directory) { | path |
@@ -27,7 +29,7 @@ while file_name = Readline.readline
     rt = Bundler::Runtime::new(Dir.getwd,Bundler::Definition::build(Bundler::default_gemfile,Bundler::default_lockfile,false))
     parser = Bundler::LockfileParser.new(Bundler.read_file(Bundler.default_lockfile))
 
-    results = []
+    # results = []
 
     parser.specs.each { |spec|
       #puts "spec-source: #{spec.name} --> #{spec.source}"
